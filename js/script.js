@@ -65,6 +65,7 @@ const quotes = [
       "The future belongs to those who believe in the beauty of their dreams.",
     source: "Eleanor Roosevelt",
     citation: "Speech",
+    tag: "Motivational",
     year: "1950",
   },
   {
@@ -77,7 +78,7 @@ const quotes = [
 ];
 
 /***
- * `getRandomQuote` function
+ * `getRandomQuote` function  - returns a random quote object from the quotes array
  ***/
 const getRandomQuote = () => {
   let randomNumber = Math.floor(Math.random() * quotes.length);
@@ -85,9 +86,36 @@ const getRandomQuote = () => {
 };
 
 /***
- * `printQuote` function
+ * `printQuote` function  - calls the getRandomQuote function and stores the returned quote object in a variable
  ***/
+const printQuote = () => {
+  let randomQuote = getRandomQuote();
+  let html = `<p class="quote">${randomQuote.quote}</p>
+  <p class="source">${randomQuote.source}`;
 
+  if (randomQuote.citation) {
+    html += `<span class="citation">${randomQuote.citation}</span>`;
+  }
+  if (randomQuote.year) {
+    html += `<span class="year">${randomQuote.year}</span>`;
+  }
+  html += `</p>`;
+  document.getElementById("quote-box").innerHTML = html;
+  changeBackgroundColor();
+};
+
+/***
+ * extra credit - changes background color to a random color
+ * */
+const changeBackgroundColor = () => {
+  let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  document.body.style.backgroundColor = "#" + randomColor;
+};
+
+/***
+ * extra credit - changes quote every 10 seconds
+ * ***/
+setInterval(printQuote, 10000);
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
