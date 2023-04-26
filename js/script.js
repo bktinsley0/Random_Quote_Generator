@@ -4,7 +4,7 @@ project 1 - A Random Quote Generator
 ******************************************/
 
 /***
- * `quotes` array
+ * quotes array - contains 10 objects with quote, source, citation, and year properties
  ***/
 const quotes = [
   {
@@ -79,6 +79,10 @@ const quotes = [
 /***
  * `getRandomQuote` function
  ***/
+const getRandomQuote = () => {
+  let randomNumber = Math.floor(Math.random() * quotes.length);
+  return quotes[randomNumber];
+};
 
 /***
  * `printQuote` function
